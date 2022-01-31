@@ -1,10 +1,10 @@
 * Spring 2022 235 Assignments
 
-* Last name:
+* Last name: Durmic
 
-* First name:
+* First name: Sara
 
-* GitHub username:
+* GitHub username: sdurmic
 
 * Notes:
 

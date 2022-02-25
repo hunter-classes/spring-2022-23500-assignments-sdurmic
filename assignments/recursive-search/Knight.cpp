@@ -39,7 +39,7 @@ void board(int n, int x1, int y1)
         {
             pos[i][j] = -1;
         }
-	}
+    }
 
     int xTurn[8] = {-2, -2, -1, -1, 1, 1, 2, 2};
     int yTurn[8] = {-1, 1, -2, 2, -2, 2, -1, 1};
@@ -54,6 +54,6 @@ void board(int n, int x1, int y1)
                 cout << setw(2) << pos[x][y] << " ";
             }
             cout << endl;
-		}
-	}	
+        }
+    }
 };

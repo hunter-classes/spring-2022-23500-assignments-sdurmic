@@ -2,19 +2,20 @@
 #include "Node.h"
 using namespace std;
 
-class List
+class OList
 {
     private:
         Node *head;
 
     public:
-        List();
-        ~List();
+        OList();
+        ~OList();
         void insert(string data);
-        void insert(int loc, string data);
         int remove(int n);
         string get(int loc);
         int length();
         string toString();
         int locator(Node* head, string data);
+        bool contains(int value);
+        void reverse();
 };

@@ -1,18 +1,18 @@
 #pragma once
-using namespace std;
 
-class Node
-{
-    private:
-        string data;
-        Node *next;
+class Node{
+ private:
+  std::string data;
+  Node *next;
 
-    public:
-        Node();
-        Node(string data);
-        Node(string data, Node *next);
-        void setData(string data);
-        void setNext(Node *next);
-        string getData();
-        Node *getNext();
+ public:
+  Node();
+  Node(std::string data);
+  Node(std::string data, Node *next);
+
+  void setData(std::string data);
+  void setNext(Node *next);
+
+  std::string getData();
+  Node *getNext();
 };

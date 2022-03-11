@@ -1,17 +1,20 @@
 #include <iostream>
-#include "List.h"
+#include <stdexcept>
+#include <string>
+#include "OList.h"
+#include "Node.h"
 using namespace std;
 
-List::List()
+OList::OList()
 {
     head = nullptr;
 }
 
-List::~List()
- {
+OList::~OList()
+{
     Node *n;
     cerr << "Destructing\n";
-    while(head = nullptr)
+    while(head == nullptr)
     {
         n = head;
         head = head->getNext();
@@ -19,42 +22,14 @@ List::~List()
     }
 }
 
-void List::insert(string data)
+void OList::insert(string data)
 {
     Node *newNode = new Node(data);
     newNode->setNext(head);
     this->head = newNode;
 }
 
-void List::insert(int loc, string data)
-{
-    Node *tmp = new Node(data);
-    Node *walker = head;
-    Node *trailer = nullptr;
-  
-    while (walker != nullptr && loc > 0)
-    {
-        trailer = walker;
-        walker = walker->getNext();
-        loc = loc - 1;
-    }
-
-    if (loc > 0)
-    {
-        throw out_of_range("Out of range");
-    }
-
-    if (trailer==nullptr)
-    {
-        tmp->setNext(head);
-        head = tmp;
-    }else{
-    tmp->setNext(walker);
-    trailer->setNext(tmp);
-    }
-}
-
-int List::remove(int n)
+int OList::remove(int n)
 {
     Node *temp = head;
     Node *temp2 = nullptr;
@@ -64,7 +39,7 @@ int List::remove(int n)
         temp = temp->getNext();
         n = n-1;
     }
-    if(temp = nullptr)
+    if(temp == nullptr)
     {
         throw out_of_range("Out of range");
     }
@@ -76,9 +51,10 @@ int List::remove(int n)
         temp2->setNext(temp->getNext());
         delete temp;
     }
+    return 0;
 }
 
-string List::get(int loc)
+string OList::get(int loc)
 {
     string result = "";
     Node *walker = head;
@@ -94,7 +70,7 @@ string List::get(int loc)
         return "";   
 }
 
-int List::length()
+int OList::length()
 {
     int l = 0;
     Node *walker = head;
@@ -106,7 +82,7 @@ int List::length()
     return l;
 }
 
-string List::toString()
+string OList::toString()
 {
     Node *walker = this->head;
     string s = "";
@@ -119,7 +95,7 @@ string List::toString()
     return s;
 }
 
-int List::locator(Node* head, string data)
+int OList::locator(Node* head, string data)
 {
 	int i = 0;              
 	Node *temp = head;
@@ -133,4 +109,38 @@ int List::locator(Node* head, string data)
 	return -1;                  
 }
 
-};
+bool OList::contains(int val)
+{
+    if(val < head->getData()) //***
+        return false;
+    Node *walker = head;
+    while(walker != nullptr)
+    {
+        if(walker->getData() == val) //***
+            return true;
+        if(walker->getData() > val) //***
+        {
+            return false;
+        }
+        walker = walker->getNext();
+    }
+    return false;
+}
+
+void OList::reverse()
+{
+    Node *walker = head;
+    Node *trailer = nullptr;
+    if(walker!=nullptr)
+    {
+        trailer = walker;
+        walker = walker->getNext();
+        while(walker!=nullptr)
+        {
+            trailer->setNext(walker->getNext());
+            walker->setNext(head);
+            head = walker;
+            walker = trailer->getNext();
+        }
+    }
+}

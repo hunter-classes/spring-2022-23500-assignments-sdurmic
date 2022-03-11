@@ -1,25 +1,23 @@
 #include <iostream>
 #include "Node.h"
 
-
 Node::Node() : next(nullptr)
 {
-
 }
 
-Node::Node(string data)
+Node::Node(std::string data)
 {
     this->data = data;
     this->next = nullptr;
 }
 
-Node::Node(string data, Node *next)
+Node::Node(std::string data, Node *next)
 {
     this->data = data;
     this->next = next;
 }
 
-void Node::setData(string data)
+void Node::setData(std::string data)
 {
     this->data = data;
 }
@@ -29,7 +27,7 @@ void Node::setNext(Node *next)
     this->next = next;
 }
 
-string Node::getData()
+std::string Node::getData()
 {
     return this->data;
 }

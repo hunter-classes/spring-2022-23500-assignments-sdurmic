@@ -22,11 +22,31 @@ OList::~OList()
     }
 }
 
-void OList::insert(string data)
+void OList::insert(int val)
 {
-    Node *newNode = new Node(data);
-    newNode->setNext(head);
-    this->head = newNode;
+    Node *temp = new Node(val);
+	Node *walker = head;
+	Node *trailer = nullptr;
+	
+  	if(head == nullptr) 
+    {
+  		temp->setNext(head);
+  		this->head = temp;
+		return;
+	}
+	while(walker != nullptr && (val > walker->getData())) 
+    {
+		trailer = walker;
+		walker = walker->getNext();
+	}
+	if(trailer == nullptr) 
+    {
+		temp->setNext(head);
+        this->head = temp;
+    }else{
+		trailer->setNext(temp);
+		temp->setNext(walker);
+	}
 }
 
 int OList::remove(int n)
@@ -54,9 +74,8 @@ int OList::remove(int n)
     return 0;
 }
 
-string OList::get(int loc)
+int OList::get(int loc)
 {
-    string result = "";
     Node *walker = head;
 
     while(walker && loc > 0)
@@ -65,9 +84,11 @@ string OList::get(int loc)
         loc--;
     }
     if(walker)
+    {
         return walker->getData();
-    else
-        return "";   
+    }else{
+        return -1;
+    }
 }
 
 int OList::length()
@@ -84,18 +105,18 @@ int OList::length()
 
 string OList::toString()
 {
+    string s = "head-->";
     Node *walker = this->head;
-    string s = "";
     while(walker != nullptr)
     {
-        s = s + walker->getData() + "-->";
+        s = s + to_string(walker->getData()) + "-->";
         walker = walker->getNext();
     }
-    s = s + "null";
+    s = s + "nullptr";
     return s;
 }
 
-int OList::locator(Node* head, string data)
+int OList::locator(Node* head, int data)
 {
 	int i = 0;              
 	Node *temp = head;

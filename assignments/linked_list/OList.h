@@ -10,12 +10,12 @@ class OList
     public:
         OList();
         ~OList();
-        void insert(string data);
+        void insert(int val);
         int remove(int n);
-        string get(int loc);
+        int get(int loc);
         int length();
         string toString();
-        int locator(Node* head, string data);
+        int locator(Node* head, int data);
         bool contains(int value);
         void reverse();
 };

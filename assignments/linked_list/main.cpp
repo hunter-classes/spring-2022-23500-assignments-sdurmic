@@ -8,17 +8,17 @@ int main(int argc, char *argv[])
     OList *l1 = new OList();
 
     cout << "Insert Function: \n" << endl;
-    l1->insert("1");
+    l1->insert(1);
     cout << l1->toString() << endl; 
-    l1->insert("2");
+    l1->insert(2);
     cout << l1->toString() << endl;
-    l1->insert("3");
+    l1->insert(3);
     cout << l1->toString() << endl;
-    l1->insert("4");
+    l1->insert(4);
     cout << l1->toString() << endl;
-    l1->insert("5");
+    l1->insert(5);
     cout << l1->toString() << endl;
-    l1->insert("6");
+    l1->insert(6);
     cout << l1->toString() << endl;
 
     cout << "Contains Function: \n" << endl;

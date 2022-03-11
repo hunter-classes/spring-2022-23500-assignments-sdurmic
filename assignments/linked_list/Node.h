@@ -1,18 +1,20 @@
 #pragma once
+#include <iostream>
 
-class Node{
- private:
-  std::string data;
-  Node *next;
+class Node
+{
+	//private:
+    	//int data;
+    	//Node *next;
 
- public:
-  Node();
-  Node(std::string data);
-  Node(std::string data, Node *next);
-
-  void setData(std::string data);
-  void setNext(Node *next);
-
-  std::string getData();
-  Node *getNext();
+  	public:
+        int data;
+    	Node *next;
+    	Node();
+    	Node(int data);
+    	Node(int data, Node *next);
+ 		void setData(int data);
+    	void setNext(Node *next);
+    	int getData();
+    	Node *getNext();
 };

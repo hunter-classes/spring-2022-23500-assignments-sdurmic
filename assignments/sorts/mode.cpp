@@ -53,6 +53,23 @@ int mode(vector<int> v)
     return mode;
 }
 
+int mode2(vector<int> v)
+{
+    vector<int> freq(largest(v) + 1);
+    for(int i: v)
+    {
+        freq[i]++;
+    }
+
+    int max = 0;
+    for(int i=0; i<freq.size(); i++)
+    {
+        if (freq[max]<freq[i])
+            max = i;
+    }
+    return max;
+}
+
 int main()
 {
     int max = 10;

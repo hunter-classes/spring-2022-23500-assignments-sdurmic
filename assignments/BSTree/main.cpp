@@ -17,6 +17,10 @@ int main()
     cout << n1->getData() << endl;
     cout << n2->getData() << endl;
     cout << n3->getData() << endl;
+    
+    BSTree *t = new BSTree();
+    t->setup();
+    cout << t->get_debug_string() << '\n';
 
     return 0;
 }

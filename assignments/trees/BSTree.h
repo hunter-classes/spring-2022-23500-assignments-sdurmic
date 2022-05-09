@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdio.h>
 #include "Node.h"
+using namespace std;
 #define TREE_ERR_VALUE_NOT_FOUND 1
 
 class BSTree
@@ -16,8 +17,8 @@ class BSTree
         void setup();
         int search(int value);
         void insert(int d);
-        int rsearch(int value);
-        int rsearch(int value, Node *p);
-        void rinsert(int d);
-        void rinsert(int d, Node *p);
+        int rsearch(int val);
+        int rsearch(int val, Node *root);
+        void insert(int d, Node *p);
+        void deleteVal(int val);
 };

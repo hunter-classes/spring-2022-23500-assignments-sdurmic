@@ -18,10 +18,22 @@ int main()
 
     try
     {
-        cout << t->rsearch(2) << endl;
+        cout << tree->rsearch(2) << endl;
     }
     catch (int e)
     {
         cout << "2 is not in the tree" << endl;
     }
+
+    BSTree *tree2 = new BSTree();
+    tree2->insert(11);
+    tree2->insert(6);
+    tree2->insert(9);
+    tree2->insert(22);
+    cout <<  tree2->get_debug_string() << "\n";
+    tree2->deleteVal(6);
+    cout <<  tree2->get_debug_string() << "\n";
+    tree2->deleteVal(22);
+    cout <<  tree2->get_debug_string() << "\n";
+    return 0;
 }

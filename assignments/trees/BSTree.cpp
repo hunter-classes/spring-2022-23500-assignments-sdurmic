@@ -100,35 +100,124 @@ void BSTree::insert(int value)
     }
 }
 
-int BSTree::rsearch(int value)
+int BSTree::rsearch(int val, Node *root)
 {
-    return rsearch(value, n);
-}
-
-int BSTree::rsearch(int value, Node *p)
-{
-    if(p==nullptr)
+    if(root==nullptr)
     {
         throw TREE_ERR_VALUE_NOT_FOUND;
-    }else if(p->getData()==value)
+    }else if(root->getData()==val)
     {
-        return value;
+        return val;
     }
-    int val_p = p->getData();
-    if(value>val_p)
+    int rootVal = root->getData();
+    if(val>rootVal)
     {
-        return rsearch(value, p->getRight());
+        return rsearch(val, root->getRight());
     }else{
-        return rsearch(value, p->getLeft());
+        return rsearch(val, root->getLeft());
     }
 }
 
-void BSTree::rinsert(int value, Node *p)
+int BSTree::rsearch(int val)
 {
-  
+    return rsearch(val, root);
 }
 
-void BSTree::rinsert(int value)
+void BSTree::insert(int value, Node *p)
 {
-    
+    Node *newnode = new Node(value);
+  
+    //Node *p = root;
+    Node *trailer;
+
+    while(p != nullptr) 
+    {
+        trailer = p;
+        if(p->getData() == value)
+        {
+            return;
+        }else if(p->getData() < value)
+        {
+            p = p->getRight(); 
+        }else{
+            p = p->getLeft();
+        }
+    }
+  
+    if(root==nullptr)
+    {
+        root=newnode;
+    }else{
+        if (trailer->getData() < value)
+        {
+            trailer->setRight(newnode);
+        }else{
+            trailer->setLeft(newnode);
+        }
+    }
+}
+
+void BSTree::deleteVal(int val) 
+{
+    Node *n = root;
+    Node *trailer;
+
+    while(n != nullptr) 
+    {
+        if(n->getData() == val) 
+        {
+            if((n->getRight() == nullptr)&&(n->getLeft() == nullptr)) 
+            {
+                if(trailer->getRight() == n) 
+                {
+                    trailer->setRight(nullptr);
+                    return;
+                }else{
+                    trailer->setLeft(nullptr);
+                return;
+                }
+            }
+            if((n->getRight() != nullptr) && (n->getLeft() == nullptr)) 
+            {
+                if(trailer->getRight() == n) 
+                {
+                    trailer->setRight(n->getRight());
+                    return;
+                }else{
+                    trailer->setLeft(n->getRight());
+                    return;
+                }
+            }
+            if((n->getRight() == nullptr) && (n->getLeft() != nullptr)) 
+            {
+                if(trailer->getRight() == n) 
+                {
+                    trailer->setRight(n->getLeft());
+                    return;
+                }else{
+                    trailer->setLeft(n->getLeft());
+                    return;
+                }
+            }
+            if((n->getRight() != nullptr) && (n->getLeft() != nullptr)) 
+            {
+                Node *temp = n->getLeft();
+                while(temp->getRight() != nullptr) 
+                {
+                    temp = temp->getRight();
+                }
+                int holder = temp->getData();
+                this->deleteVal(holder);
+                n->setData(holder);
+            }
+        }else if(n->getData() < val)
+        {
+            trailer = n;
+            n = n->getRight();
+        }else{
+            trailer = n;
+            n = n->getLeft();
+        }
+    }
+    return;
 }

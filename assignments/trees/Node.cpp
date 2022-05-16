@@ -1,17 +1,18 @@
+#include <iostream>
 #include "Node.h"
 
 Node::Node() 
 {
     data = 0;
-    left = nullptr;
-    right = nullptr;
+    left = NULL;
+    right = NULL;
 }
 
 Node::Node(int data)
 {
     this->data = data;
-    left = nullptr;
-    right = nullptr;
+    left = NULL;
+    right = NULL;
 }
 
 Node::Node(int data, Node *l, Node *r)

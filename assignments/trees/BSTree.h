@@ -21,4 +21,10 @@ class BSTree
         int rsearch(int val, Node *root);
         void insert(int d, Node *p);
         void deleteVal(int val);
+        int countLeaves(Node *node);
+        int countLeaves();
+        int treeHeight(Node *node);
+        int treeHeight();
+        int levelSum(Node *node, int lvl);
+        int levelSum(int lvl);
 };

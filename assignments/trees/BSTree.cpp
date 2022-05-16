@@ -19,7 +19,7 @@ string BSTree::traverse(Node *n)
     b = to_string(n->getData());
     c = traverse(n->getRight());
 
-    return a + ", " + b+ ", " + c;
+    return a + b + ", " + c;
     }
 };
 
@@ -42,8 +42,10 @@ void BSTree::setup()
     root->setLeft(n2);
     n = new Node(3);
     n2->setLeft(n);
-    n = new Node(8);
-    n2->setRight(n);
+    Node *n3 = new Node(8);
+    n2->setRight(n3);
+    n2 = new Node(2);
+    n->setLeft(n2);
 }
 
 int BSTree::search(int value)
@@ -126,8 +128,6 @@ int BSTree::rsearch(int val)
 void BSTree::insert(int value, Node *p)
 {
     Node *newnode = new Node(value);
-  
-    //Node *p = root;
     Node *trailer;
 
     while(p != nullptr) 
@@ -143,7 +143,6 @@ void BSTree::insert(int value, Node *p)
             p = p->getLeft();
         }
     }
-  
     if(root==nullptr)
     {
         root=newnode;
@@ -220,4 +219,64 @@ void BSTree::deleteVal(int val)
         }
     }
     return;
+}
+
+int BSTree::countLeaves(Node *node)
+{
+    if(node == nullptr)
+    { 
+        return 0;
+    }else if(node->getLeft() == nullptr && node->getRight() == nullptr) 
+    { 
+        return 1;
+    }
+    return countLeaves(node->getLeft()) + countLeaves(node->getRight());
+}
+
+int BSTree::countLeaves()
+{
+    return countLeaves(root);
+}
+
+int BSTree::treeHeight(Node *node)
+{
+    if(node == nullptr)
+    { 
+        return 0;
+    }else{  
+        int leftHeight = treeHeight(node->getLeft()) + 1; 
+        int rightHeight = treeHeight(node->getRight()) + 1;
+        if(leftHeight<rightHeight)
+        {
+            return rightHeight;
+        }
+        return leftHeight;
+    }
+}
+
+int BSTree::treeHeight()
+{
+    return treeHeight(root);
+}
+
+int BSTree::levelSum(Node *node, int lvl)
+{
+    if(lvl==1) 
+    {
+        if(node == nullptr)
+        {
+            return 0;
+        }
+    return node->getData();
+    }
+    return levelSum(node->getLeft(),lvl-1) + levelSum(node->getRight(),lvl-1);
+}
+
+int BSTree::levelSum(int lvl)
+{
+    if(lvl>treeHeight() || lvl<1)
+    {
+        return 0;
+    }
+    return levelSum(root, lvl);
 }
